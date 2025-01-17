@@ -3,7 +3,8 @@
 #
 @PACKAGE_INIT@
 
-cmake_minimum_required(VERSION 3.8...3.27)
+cmake_policy(PUSH)
+cmake_policy(VERSION 3.0.0...3.27)
 
 # -------------------------------------------------------------------------------------- #
 # basic paths
@@ -78,3 +79,5 @@ if(NOT TARGET PTL::ptl)
         target_compile_definitions(PTL::ptl INTERFACE _PTL_ARCHIVE)
     endif()
 endif()
+
+cmake_policy(POP)
