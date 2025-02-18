@@ -1,9 +1,17 @@
 # -------------------------------------------------------------------------------------- #
+
+if("${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}" LESS 2.8)
+   message(FATAL_ERROR "CMake >= 3.8.0 required")
+endif()
+if(CMAKE_VERSION VERSION_LESS "3.8.0")
+   message(FATAL_ERROR "CMake >= 3.8.0 required")
+endif()
+cmake_policy(PUSH)
+cmake_policy(VERSION 3.8.0...3.27)
+
 # package initialization
 #
 @PACKAGE_INIT@
-
-cmake_minimum_required(VERSION 3.8...3.27)
 
 # -------------------------------------------------------------------------------------- #
 # basic paths
@@ -78,3 +86,5 @@ if(NOT TARGET PTL::ptl)
         target_compile_definitions(PTL::ptl INTERFACE _PTL_ARCHIVE)
     endif()
 endif()
+
+cmake_policy(POP)
